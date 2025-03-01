@@ -25,8 +25,8 @@ func main() {
 		})
 	})
 
-	r.POST("/register", controllers.Register)
-	r.POST("/login", controllers.Login)
+	r.POST("/register", middleware.RateLimiter(), controllers.Register)
+	r.POST("/login", middleware.RateLimiter(), controllers.Login)
 	r.POST("/refresh", controllers.RefreshToken)
 
 	protected := r.Group("/")
