@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberNotes - Login</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>CyberNotes</h1>
+        <p class="subtitle">Safe notes for hackers 🕶️</p>
+
+        <div class="login-box">
+            <input type="email" placeholder="Email" id="email">
+            <input type="password" placeholder="Password" id="password">
+            <button onclick="login()">Login</button>
+            <p class="register">Don't have an account? <a href="#" onclick="register()">Register here</a></p>
+        </div>
+
+        <p id="message"></p>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
