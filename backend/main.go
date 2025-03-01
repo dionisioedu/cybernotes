@@ -1,13 +1,21 @@
 package main
 
 import (
+	"log"
+
 	"github.com/dionisioedu/cybernotes/backend/controllers"
 	"github.com/dionisioedu/cybernotes/backend/database"
 	"github.com/dionisioedu/cybernotes/backend/middleware"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Erro ao carregar o arquivo .env")
+	}
+
 	database.Connect()
 	r := gin.Default()
 
@@ -22,10 +30,11 @@ func main() {
 
 	protected := r.Group("/")
 	protected.Use(middleware.AuthMiddleware())
-	protected.GET("/protected", func(c *gin.Context) {
-		userID, _ := c.Get("user_id")
-		c.JSON(200, gin.H{"message": "Acesso permitido", "user_id": userID})
-	})
+
+	protected.POST("/notes", controllers.CreateNote)
+	protected.GET("/notes", controllers.GetNotes)
+	protected.PUT("/notes/:id", controllers.UpdateNote)
+	protected.DELETE("/notes/:id", controllers.DeleteNote)
 
 	r.Run(":8080")
 }
