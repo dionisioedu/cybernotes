@@ -19,7 +19,7 @@ func Connect() {
 
 	fmt.Println("Database connected!")
 
-	db.AutoMigrate(&User{}, &Note{})
+	db.AutoMigrate(&User{}, &Note{}, &RefreshToken{})
 
 	DB = db
 }

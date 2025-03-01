@@ -2,6 +2,12 @@ package database
 
 import "gorm.io/gorm"
 
+type RefreshToken struct {
+	gorm.Model
+	Token  string `json:"token" gorm:"unique"`
+	UserID uint   `json:"user_id"`
+}
+
 type User struct {
 	gorm.Model
 	Name     string `json:"name"`
